@@ -1,0 +1,161 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:replace="fragments :: head">-->
+<!--    <style>-->
+<!--        /* Custom styles */-->
+
+<!--        /* Add some padding to the body */-->
+<!--        body {-->
+<!--            padding: 20px;-->
+<!--        }-->
+
+<!--        /* Style the table */-->
+<!--        table {-->
+<!--            width: 100%;-->
+<!--            border-collapse: collapse;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        /* Style the table header */-->
+<!--        thead {-->
+<!--            background-color: #333;-->
+<!--            color: #fff;-->
+<!--        }-->
+
+<!--        th {-->
+<!--            padding: 10px;-->
+<!--            font-size: 18px;-->
+<!--            font-weight: bold;-->
+<!--            text-align: left;-->
+<!--        }-->
+
+<!--        /* Style the table body */-->
+<!--        td {-->
+<!--            padding: 10px;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+
+<!--        /* Add hover effect to table rows */-->
+<!--        tbody tr:hover {-->
+<!--            background-color: #f5f5f5;-->
+<!--        }-->
+
+<!--        /* Style the links */-->
+<!--        a {-->
+<!--            color: #007bff;-->
+<!--        }-->
+
+<!--        a:hover {-->
+<!--            color: #0056b3;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<header th:replace="fragments :: header"></header>-->
+
+<!--<nav th:replace="fragments :: navigation"></nav>-->
+
+<!--<div class="container body-content">-->
+<!--    <br>-->
+<!--    <h4 th:replace="fragments :: title">list.html</h4>-->
+
+<!--    <table id="listing-table">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Companies</th>-->
+<!--            <th>Job Types</th>-->
+<!--            <th>Locations</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <ul>-->
+<!--                    <li th:each="company : ${companies}">-->
+<!--                        <a th:href="@{/list/jobs/(fieldName='company', value=${company})}"-->
+<!--                           th:text="${company}"></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <ul>-->
+<!--                    <li th:each="type : ${jobTypes}">-->
+<!--                        <a th:href="@{/list/jobs/(fieldName='jobType', value=${type})}"-->
+<!--                           th:text="${type}"></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <ul>-->
+<!--                    <li th:each="location : ${locations}">-->
+<!--                        <a th:href="@{/list/jobs/(fieldName='location', value=${location})}"-->
+<!--                           th:text="${location}"></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+    <header th:replace="fragments :: header"></header>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <div class="container body-content">
+        <br>
+        <h4 th:replace="fragments :: title">list.html</h4>
+
+        <table id="listing-table" class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col fs-3">Companies</th>
+                    <th scope="col fs-3">Job Types</th>
+                    <th scope="col fs-3">Locations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <li th:each="company : ${companies}" class="p-2">
+                            <a th:href="@{/list/jobs/(fieldName='company', value=${company})}"
+                               th:text="${company}"
+                               style="text-decoration: none;"></a>
+                        </li>
+                    </td>
+                    <td>
+                        <li th:each="type : ${jobTypes}" class="p-2">
+                            <a th:href="@{/list/jobs/(fieldName='jobType', value=${type})}"
+                               th:text="${type}"
+                               style="text-decoration: none;"></a>
+                        </li>
+                    </td>
+                    <td>
+                        <li th:each="location : ${locations}" class="p-2">
+                            <a th:href="@{/list/jobs/(fieldName='location', value=${location})}"
+                               th:text="${location}"
+                               style="text-decoration: none;"></a>
+                        </li>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

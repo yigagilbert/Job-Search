@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+    <header th:replace="fragments :: header"></header>
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <h4 th:replace="fragments :: title">jobListing.html</h4>
+
+   <div class="container body-content">
+    <br>
+       <form th:action="@{/jobs/edit/{id}(id=${id})}" class="row g-3"
+             th:object="${listing}" method="POST">
+           <div class="col-md-6">
+               <label class="form-label">Job Title</label>
+               <input class="form-control border-0" readonly type="text"
+                      th:name="jobTitle" th:value="*{jobTitle}" />
+           </div>
+           <div class="col-md-6">
+               <label class="form-label">Company</label>
+               <input class="form-control border-0" readonly type="text"
+                      th:name="company" th:value="*{jobListingDetails.company}" />
+           </div>
+           <div class="col-md-6">
+               <label class="form-label">Location</label>
+               <input class="form-control border-0" readonly type="text"
+                      th:name="jobLocation" th:value="*{jobListingDetails.jobLocation}" />
+           </div>
+           <div class="col-md-6">
+               <label class="form-label">Job Listing URL</label>
+               <input class="form-control border-0" readonly type="url"
+                      th:name="jobListingUrl" th:value="*{jobListingDetails.jobListingUrl}"/>
+           </div>
+           <div class="col-md-3">
+               <label class="form-label">Job Listing Number</label>
+               <input class="form-control border-0" readonly type="text"
+                      th:name="jobListingNumber" th:value="*{jobListingDetails.jobListingNumber}" />
+           </div>
+           <div class="col-md-3">
+               <label class="form-label">Salary</label>
+               <input class="form-control border-0" readonly type="text"
+                      th:name="salary" th:value="*{jobListingDetails.jobSalary}"/>
+           </div>
+           <div class="col-md-6">
+               <label class="form-label">Job Type</label>
+               <input class="form-control border-0" readonly type="text"
+                      th:name="jobType" th:value="*{jobListingDetails.jobType}" />
+           </div>
+
+           <div class="col-md-6">
+               <label class="form-label">Qualifications</label>
+               <textarea  class="form-control border-0" readonly
+                          th:name="jobQualifications"
+                          th:value="*{jobListingDetails.jobQualifications}"
+                          rows="4"></textarea>
+           </div>
+           <div class="col-md-6">
+               <label class="form-label">Description</label>
+               <textarea class="form-control border-0" readonly
+                         th:name="jobDescription"
+                         th:value="*{jobListingDetails.jobDescription}" rows="4"></textarea>
+           </div>
+           <!--            <div class="col-md-6">-->
+           <!--                <label class="form-label">User-->
+           <!--                    <input type="text" th:value="${username}" th:name="username" readonly>-->
+           <!--                </label>-->
+           <!--            </div>-->
+
+           <br />
+           <div class="col-md-3">
+               <button class="btn btn-dark">
+                   <a th:href="@{edit/{id}(id=${id})}" class="nav-link-color nav-link-no-underline">Edit Job Details</a>
+               </button>
+           </div>
+       </form>
+       <br>
+       <form  class="row g-3" th:action="@{/jobs/{id}(id=${id})}" method="post">
+           <div class="col-md-3">
+               <button type="submit" class="btn btn-danger">Delete Job</button>
+           </div>
+       </form>
+       <hr>
+       <table th:if="${contacts != null}">
+       </table>
+       <div>
+           <button class="btn btn-dark">
+               <a th:href="@{../contacts/add/{id}(id=${id})}" class="nav-link-color nav-link-no-underline">Add
+                   Contact</a>
+           </button>
+       </div>
+
+   </div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body>
+<!--<header th:replace="fragments :: header"></header>-->
+<div>
+    <form th:action="@{/login}" method="POST" style="max-width: 400px; margin: 0 auto; text-align: center;">
+        <h1>Please Log In</h1>
+        <div id="oauth2">
+            <a th:href="@{/oauth2/code/github}">Log in with GitHub</a>
+            <br />
+            <a th:href="@{/oauth2/authorization/google}">Log in with Google</a>
+        </div>
+        <br />
+        <div th:if="${param.error}" class="text-danger">Invalid username and password</div>
+        <div th:if="${param.logout}" class="text-warning">You have been logged out.</div>
+        <div class="border border-secondary rounded p-3">
+            <div>
+                <p><input type="text" name="username" class="form-control" placeholder="Username" required /></p>
+            </div>
+            <p>
+                <p><input type="password" name="password" class="form-control" placeholder="Password "required /></p>
+            </p>
+            <br />
+            <input type="checkbox" name="remember-me" checked /> Remember Me
+            <p>
+                <input type="submit" value="Log in" class="btn btn-primary"/>
+            </p>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:replace="fragments :: head"></head>-->
+<!--<body>-->
+<!--    <header th:replace="fragments :: header"></header>-->
+
+<!--    <main>-->
+<!--        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h3>-->
+
+<!--        <form th:action="@{/logout}" method="POST">-->
+<!--            <input type="submit" value="Logout" />-->
+<!--        </form>-->
+<!--    </main>-->
+
+<!--</body>-->
+<!--</html>-->

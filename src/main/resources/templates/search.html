@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+    <header th:replace="fragments :: header"></header>
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <main>
+        <div class="container body-content">
+            <form th:action="@{/search/results}" method="POST">
+                <div class="form-group justify-content-md-center">
+                    <div class="form-control-plaintext">
+                        <input type="text" name="searchTerm">
+                        <button type="submit" class="btn btn-dark mb-2">Search</button>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="company" name="searchCategory" value="company" checked>
+                        <label for="company" class="custom-control-label">Search by Company</label>
+
+                        <input type="radio" id="jobTitle" name="searchCategory" value="jobTitle">
+                        <label for="jobTitle" class="custom-control-label">Search by Job Title</label>
+
+                        <input type="radio" id="location" name="searchCategory" value="location">
+                        <label for="location" class="custom-control-label">Search by Location</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

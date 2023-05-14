@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+    <header th:replace="fragments :: header"></header>
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <h4 th:replace="fragments :: title">jobListing.html</h4>
+
+    <div class="container body-content">
+        <br>
+
+        <!--       <div class="container">-->
+        <!--           <div class="row">-->
+        <!--               <div class="col-9">.col-9</div>-->
+        <!--               <div class="col-4">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>-->
+        <!--               <div class="col-6">.col-6<br>Subsequent columns continue along the new line.</div>-->
+        <!--           </div>-->
+        <!--       </div>-->
+
+        <div class="card" th:object="${listing}">
+            <!--   th:text="${T(java.lang.String).format(myObject.stringFormatMessage,myObject.param)}"
+                   th:text="'The name of the user is ' + ${user.name}"-->
+            <!--           <h5 class="card-header" th:text="*{jobTitle}">Job Title</h5>-->
+            <h5 class="card-header" th:text="${listing.jobTitle}">Job Title: </h5>
+            <div class="card-body">
+
+                <div class="container">
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Company</div>
+                        <div class="col-6" th:text="*{jobListingDetails.company}"></div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Location</div>
+                        <div class="col-6" th:text="*{jobListingDetails.jobLocation}"></div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Job Type</div>
+                        <div class="col-6" th:text="*{jobListingDetails.jobType}"></div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Salary</div>
+                        <div class="col-6" th:text="*{jobListingDetails.jobSalary}"></div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Job Listing URL</div>
+                        <div class="col-6" th:text="*{jobListingDetails.jobListingUrl}"></div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Qualifications</div>
+                        <div class="col-6" th:text="*{jobListingDetails.jobQualifications}"></div>
+                    </div>
+                    <div class="row p-2">
+                        <div class="col-3 fw-bold">Description</div>
+                        <div class="col-6" th:text="*{jobListingDetails.jobDescription}"></div>
+                    </div>
+                </div>
+
+                <a th:href="@{edit/{id}(id=${id})}" class="btn btn-primary">Edit Job Details</a>
+            </div>
+        </div>
+        <br>
+        <form  class="row g-3" th:action="@{/jobs/{id}(id=${id})}" method="post">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-danger">Delete Job</button>
+            </div>
+        </form>
+
+
+       <hr>
+
+       <th:block th:if="${contacts}">
+           <h4>Contacts</h4>
+           <table th:each="contact : ${contacts}" class="table table-contacts">
+               <tr>
+                   <th>Name</th>
+                   <td th:text="${contact.firstName}"></td>
+                   <td th:text="${contact.lastName}"></td>
+                   <td colspan="4"></td>
+               </tr>
+               <tr>
+                   <th>Title</th>
+                   <td colspan="4" th:text="${contact.jobTitle}"></td>
+               </tr>
+               <tr>
+                   <td><b>Telephone</b></td>
+                   <td th:text="${contact.phoneNumber}"></td>
+                   <td><b>E-Mail</b></td>
+                   <td th:text="${contact.email}"></td>
+               </tr>
+               <tr th:if="${contact.notes.length()}">
+                   <th>Notes</th>
+                   <td colspan="4" th:text="${contact.notes}"></td>
+               </tr>
+               <tr>
+                   <td>
+                       <button class="btn btn-primary">
+                           <a th:href="@{../contacts/edit/{contactId}(contactId=${contact.id})}"
+                              class="nav-link-color nav-link-no-underline">Edit
+                           Contact</a>
+                       </button>
+                   </td>
+                   <td>
+                       <form th:action="@{/contacts/delete/{contactId}(contactId=${contact.id})}"
+                            method="POST">
+                           <button class="btn btn-danger" type="submit">
+                           Delete Contact
+    <!--                       <a th:href="@{/contacts/delete/{concatId}(contactId=${contactId})}">Delete Contact</a></button></td>-->
+                           </button>
+                       </form>
+                   </td>
+<!--                   <td>-->
+<!--                       <button class="btn btn-danger">-->
+<!--                           <a th:href="@{../contacts/delete/{contactId}(contactId=${contact.id})}"-->
+<!--                           class="nav-link-color nav-link-no-underline">-->
+<!--                               Delete Contact-->
+<!--                           </a>-->
+<!--                       </button>-->
+<!--                   </td>-->
+                   <td colspan="2"></td>
+               </tr>
+           </table>
+       </th:block>
+
+       <div>
+           <button class="btn btn-dark">
+               <a th:href="@{../contacts/add/{id}(id=${id})}" class="nav-link-color nav-link-no-underline">Add
+                   Contact</a>
+           </button>
+       </div>
+
+   </div>
+
+</body>
+</html>

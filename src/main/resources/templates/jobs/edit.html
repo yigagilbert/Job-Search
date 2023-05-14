@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<nav th:replace="fragments :: navigation"></nav>
+
+<main>
+    <div class="container body-content">
+        <h4 th:replace="fragments :: title">edit.html</h4>
+        <br>
+        <form th:action="@{/jobs/edit/{id}(id=${id})}" class="row g-3"
+              th:object="${jobListing}" method="POST">
+            <div class="col-md-6">
+                <label class="form-label">Job Title</label>
+                <input class="form-control" type="text" th:name="jobTitle" th:value="*{jobTitle}" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Company</label>
+                <input class="form-control" type="text" th:name="company" th:value="*{jobListingDetails.company}" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Location</label>
+                <input class="form-control" type="text" th:name="jobLocation" th:value="*{jobListingDetails.jobLocation}" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Job Listing URL</label>
+                <input class="form-control" type="url" th:name="jobListingUrl" th:value="*{jobListingDetails.jobListingUrl}"/>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Job Listing Number</label>
+                <input class="form-control" type="text" th:name="jobListingNumber" th:value="*{jobListingDetails.jobListingNumber}" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Salary</label>
+                <input class="form-control" type="text" th:name="salary" th:value="*{jobListingDetails.jobSalary}"/>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Job Type</label>
+                <input class="form-control" type="text" th:name="jobType" th:value="*{jobListingDetails.jobType}" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Qualifications</label>
+                <textarea  class="form-control" th:name="jobQualifications"
+                           th:placeholder="*{jobListingDetails.jobQualifications}"
+                           rows="4"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" th:name="jobDescription"
+                          th:placeholder="*{jobListingDetails.jobDescription}" rows="4"></textarea>
+            </div>
+            <!--            <div class="col-md-6">-->
+            <!--                <label class="form-label">User-->
+            <!--                    <input type="text" th:value="${username}" th:name="username" readonly>-->
+            <!--                </label>-->
+            <!--            </div>-->
+
+            <br />
+            <div class="col-md-3">
+                <input type="submit" value="Save Job Edit" class="btn btn-dark"/>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-dark">
+                    <a th:href="@{/dashboard}" class="buttonLink nav-link-color nav-link-no-underline">Cancel Job
+                        Edit</a>
+                </button>
+            </div>
+        </form>
+        <br>
+        <form  class="row g-3" th:action="@{/jobs/{id}(id=${id})}" method="post">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-danger">Delete Job</button>
+            </div>
+        </form>
+    </div>
+
+</main>
+</body>
+</html>

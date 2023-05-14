@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<nav th:replace="fragments :: navigation"></nav>
+    <div class="container body-content">
+    <br>
+        <div class="div-inline">
+            <h4 th:text="${title}"></h4>
+            <span th:text="${subtitle}" class="text-primary"></span>
+            <span class="text-primary">:</span>
+            <span th:text="${company}" class="text-primary"></span>
+        </div>
+        <br />
+    <form th:action="@{/contacts/add/{id}(id=${id})}" th:object="${contact}"
+          method="POST" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">First Name</label>
+            <input class="form-control" type="text" th:name="firstName" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" type="text" th:name="lastName" />
+        </div>
+        <div class="col-md-12">
+            <label class="form-label">Job Title</label>
+            <input class="form-control" type="text" th:name="jobTitle" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Phone Number</label>
+            <input class="form-control" type="text" th:name="phoneNumber" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">E-Mail</label>
+            <input class="form-control" type="email" th:name="email" />
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Notes</label>
+            <textarea class="form-control" th:name="notes" rows="4">
+                </textarea>
+        </div>
+
+        <div class="col-12" hidden>
+            <label class="form-label">User</label>
+            <input class="form-control" type="text" th:value="${username}" th:name="username" readonly>
+        </div>
+
+        <div class="col-12">
+            <input type="submit" value="Add New Contact" class="btn btn-dark"/>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-warning">
+                <a th:href="@{/jobs/{id}(id=${id})}" class="nav-link-color nav-link-no-underline">
+                    Cancel Changes
+                </a>
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

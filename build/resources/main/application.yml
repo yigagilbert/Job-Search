@@ -1,0 +1,33 @@
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+#          server:
+#            port: 8080
+          google:
+            client-id: 727423663939-nm9b6hankh9n009qhroe272qe3ujhug6.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+          #          facebook:
+          #            client-id: < Enter Facebook App ID >
+          #            client-secret: < Enter Facebook App Secret >
+          github:
+            client-id: 4c56795ec6bdb89b1a31
+            client-secret: 0d40b38efdfc1d8dc82c4f3193e32b547983d0c4
+            scope:
+              - email
+              - profile
+#          okta:
+#            client-id: < Enter Okta Client ID >
+#            client-secret: < Enter Okta Client Secret >
+#        provider:
+#          okta:
+#            authorization-uri: https://<subdomain>.okta.com/oauth2/v1/authorize
+#            token-uri: https://<subdomain>.okta.com/oauth2/v1/token
+#            user-info-uri: https://<subdomain>.okta.com/oauth2/v1/userinfo
+#            jwk-set-uri: https://<subdomain>.okta.com/oauth2/v1/keys

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+    <header th:replace="fragments :: header"></header>
+    <nav th:replace="fragments :: navigation"></nav>
+    <div class="container body-content">
+<!--        <h4 th:text="${title}">add.html</h4>-->
+<!--        <h4 th:replace="fragments :: title">add.html</h4>-->
+        <br>
+        <form th:action="@{/jobs/add}" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Job Title</label>
+                <input class="form-control" type="text" th:name="jobTitle" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Company</label>
+                <input class="form-control" type="text" th:name="company" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Location</label>
+                <input class="form-control" type="text" th:name="jobLocation" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Job Listing URL</label>
+                <input class="form-control" type="url" th:name="jobListingUrl" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Job Listing Number</label>
+                <input class="form-control" type="text" th:name="jobListingNumber" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Salary</label>
+                <input class="form-control" type="text" th:name="salary" />
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Job Type</label>
+                <input class="form-control" type="text" th:name="jobType" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Qualifications</label>
+                <textarea class="form-control" th:name="jobQualifications" rows="4">
+                </textarea>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" th:name="jobDescription" rows="4">
+                </textarea>
+            </div>
+            <div class="col-12" hidden>
+                <label class="form-label">User</label>
+                <input class="form-control" type="text" th:value="${username}" th:name="username" readonly>
+            </div>
+            <div class="col-12">
+                <input type="submit" value="Add Job Listing" class="btn btn-dark"/>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

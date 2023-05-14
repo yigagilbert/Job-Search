@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<header th:replace="fragments :: header"></header>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container body-content">
+    <br>
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+<!--            <th>ID</th>-->
+            <th>Job Title</th>
+            <th>Company Name</th>
+            <th>Location</th>
+            <th>Job Type</th>
+        </tr>
+        </thead>
+        <tr th:each="job : ${jobListings}">
+<!--                <td th:text="${job.id}"></td>-->
+                <td><a th:href="@{/jobs/{id}(id=${job.id})}"
+                       th:text="${job.jobTitle}"
+                       style="text-decoration: none;"></a></td>
+                <td><a th:href="@{/jobs/{id}(id=${job.id})}"
+                       th:text="${job.jobListingDetails.company}"
+                       style="text-decoration: none;"></a></td>
+                <td><a th:href="@{/jobs/{id}(id=${job.id})}"
+                       th:text="${job.jobListingDetails.jobLocation}"
+                       style="text-decoration: none;"></a></td>
+                <td><a th:href="@{/jobs/{id}(id=${job.id})}"
+                       th:text="${job.jobListingDetails.getJobType}"
+                       style="text-decoration: none;"></a></td>
+        </tr>
+    </table>
+
+</div>
+
+
+
+</body>
+</html>

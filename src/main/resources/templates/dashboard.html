@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+    <header th:replace="fragments :: header"></header>
+    <nav th:replace="fragments :: navigation"></nav>
+<!--    <form th:action="@{/logout}" method="POST">-->
+<!--        <input type="submit" value="Logout" />-->
+<!--    </form>-->
+
+    <div class="container body-content">
+        <br>
+                <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+                <br />
+                <div class="dashboard-goals">
+                    <p>Today you sent 2 resumes. Just 3 more to your daily goal!</p>
+                    <p class="text text-success">This week you have 3 job-search appointments/interviews.</p>
+                    <hr />
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+<!--                            <th>ID</th>-->
+                            <th>Job Title</th>
+                            <th>Company Name</th>
+                            <th></th>
+                <!--            <th>User Name</th>-->
+                        </tr>
+                    </thead>
+                    <tr th:each="job : ${jobs}">
+<!--                        <td th:text="${job.id}"></td>-->
+                        <td th:text="${job.jobTitle}"></a></td>
+                        <td th:text="${job.jobListingDetails.company}"></td>
+                        <td>
+                            <a th:href="@{jobs/{id}(id=${job.id})}">See</a> /
+                            <a th:href="@{jobs/edit/{id}(id=${job.id})}">Edit</a>
+                        </td>
+            <!--            <td th:text="${job.user.username}"></td>-->
+                    </tr>
+                </table>
+                <a href="/jobs/add">Add a job listing</a>
+
+        <hr>
+    </div>
+
+</body>
+</html>
