@@ -1,50 +1,122 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html xmlns:th="http:/www.thymeleaf.org">
-<head th:replace="fragments :: head"></head>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Login: Mycart</title>
+    <%@include file="components/common_css_js.jsp" %>
+</head>
 <body>
-<!--<header th:replace="fragments :: header"></header>-->
-<div>
-    <form th:action="@{/login}" method="POST" style="max-width: 400px; margin: 0 auto; text-align: center;">
-        <h1>Please Log In</h1>
-        <div id="oauth2">
-            <a th:href="@{/oauth2/code/github}">Log in with GitHub</a>
-            <br />
-            <a th:href="@{/oauth2/authorization/google}">Log in with Google</a>
-        </div>
-        <br />
-        <div th:if="${param.error}" class="text-danger">Invalid username and password</div>
-        <div th:if="${param.logout}" class="text-warning">You have been logged out.</div>
-        <div class="border border-secondary rounded p-3">
-            <div>
-                <p><input type="text" name="username" class="form-control" placeholder="Username" required /></p>
+<div class="app-bar">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Mycart</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
             </div>
-            <p>
-                <p><input type="password" name="password" class="form-control" placeholder="Password "required /></p>
-            </p>
-            <br />
-            <input type="checkbox" name="remember-me" checked /> Remember Me
-            <p>
-                <input type="submit" value="Log in" class="btn btn-primary"/>
-            </p>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-3">
+                <div class="card-header custom-bg">
+                    <h3>Login Here</h3>
+                </div>
+                <div class="card-body">
+                    <%@include file="components/message.jsp" %>
+                    <form action="LoginServlet" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="container text-center">
+                            <button type="submit" class="btn btn-primary custom-bg">Submit</button>
+                            <button type="reset" class="btn btn-primary custom-bg">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
+    </div>
 </div>
 </body>
 </html>
 
+
+
+
+
+
+
+
 <!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<html xmlns:th="http:/www.thymeleaf.org">-->
 <!--<head th:replace="fragments :: head"></head>-->
 <!--<body>-->
-<!--    <header th:replace="fragments :: header"></header>-->
-
-<!--    <main>-->
-<!--        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h3>-->
-
-<!--        <form th:action="@{/logout}" method="POST">-->
-<!--            <input type="submit" value="Logout" />-->
-<!--        </form>-->
-<!--    </main>-->
-
+<!--&lt;!&ndash;<header th:replace="fragments :: header"></header>&ndash;&gt;-->
+<!--<div>-->
+<!--    <form th:action="@{/login}" method="POST" style="max-width: 400px; margin: 0 auto; text-align: center;">-->
+<!--        <h1>Please Log In</h1>-->
+<!--        <div id="oauth2">-->
+<!--&lt;!&ndash;            <a th:href="@{/oauth2/code/github}">Log in with GitHub</a>&ndash;&gt;-->
+<!--            <br />-->
+<!--            <a th:href="@{/oauth2/authorization/google}">Log in with Google</a>-->
+<!--        </div>-->
+<!--        <br />-->
+<!--        <div th:if="${param.error}" class="text-danger">Invalid username and password</div>-->
+<!--        <div th:if="${param.logout}" class="text-warning">You have been logged out.</div>-->
+<!--        <div class="border border-secondary rounded p-3">-->
+<!--            <div>-->
+<!--                <p><input type="text" name="username" class="form-control" placeholder="Username" required /></p>-->
+<!--            </div>-->
+<!--            <p>-->
+<!--                <p><input type="password" name="password" class="form-control" placeholder="Password "required /></p>-->
+<!--            </p>-->
+<!--            <br />-->
+<!--            <input type="checkbox" name="remember-me" checked /> Remember Me-->
+<!--            <p>-->
+<!--                <input type="submit" value="Log in" class="btn btn-primary"/>-->
+<!--            </p>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 <!--</body>-->
 <!--</html>-->
+
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en" xmlns:th="http://www.thymeleaf.org/">&ndash;&gt;-->
+<!--&lt;!&ndash;<head th:replace="fragments :: head"></head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <header th:replace="fragments :: header"></header>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <main>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h3 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]</h3>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <form th:action="@{/logout}" method="POST">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="submit" value="Logout" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--&lt;!&ndash;    </main>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
